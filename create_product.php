@@ -1,0 +1,58 @@
+<?php
+session_start();
+require_once 'models/Product.php';
+
+// 1. CONTROL DE ACCESO (PROTECCIÓN)
+if (!isset($_SESSION['user_id']) || ($_SESSION['user_role'] ?? 'USER') !== 'ADMIN') {
+    header('Location: products.php'); // Redirige si no es ADMIN
+    exit;
+}
+
+$message = null;
+$error = null;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim($_POST['name'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+    $price = (float)($_POST['price'] ?? 0.00);
+
+    if (empty($name) || $price <= 0) {
+        $error = "El nombre y el precio deben ser válidos.";
+    } else {
+        $productModel = new Product();
+        if ($productModel->create($name, $description, $price)) {
+            $message = "Producto '{$name}' creado exitosamente.";
+        } else {
+            $error = "Error al guardar el producto en la base de datos.";
+        }
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head><title>Crear Producto</title></head>
+<body>
+    <h1>Crear Nuevo Producto [ADMIN]</h1>
+    <p><a href="products.php">Volver al Catálogo</a></p>
+
+    <?php if ($message): ?>
+        <p style="color: green;"><?php echo htmlspecialchars($message); ?></p>
+    <?php endif; ?>
+    <?php if ($error): ?>
+        <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
+    <?php endif; ?>
+
+    <form method="POST" action="create_product.php">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <label for="price">Precio:</label>
+        <input type="number" id="price" name="price" step="0.01" min="0.01" required><br><br>
+
+        <button type="submit">Guardar Producto</button>
+    </form>
+</body>
+</html>
