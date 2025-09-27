@@ -6,23 +6,23 @@
 #### 1.1 Login y Sesión
 - **Caso**: Acceso a index.php sin sesión
 - **Resultado esperado**: Redirección automática a login.php
-- **Resultado obtenido**: [Anotar aquí]
+- **Resultado obtenido**: ✅ El sistema redirige correctamente a login.php cuando se intenta acceder a index.php sin una sesión activa. Se observa en la URL que cambia de `index.php` a `login.php` y se muestra el formulario de inicio de sesión.
 - **Evidencia**: ![Redirección login](qa-images/index-redirect.png)
 
 - **Caso**: Login con password_verify()
 - **Resultado esperado**: Verificación correcta de contraseña hasheada
-- **Resultado obtenido**: [Anotar aquí]
+- **Resultado obtenido**: ✅ El sistema undica "Usuario o contraseña incorrectos." cuando se digita de manera incorrecta la contraseña o el usuario.
 - **Evidencia**: ![Verificación password](qa-images/login_fail.png)
 
 - **Caso**: Logout y destrucción de sesión
 - **Resultado esperado**: Sesión destruida y redirección a login
-- **Resultado obtenido**: [Anotar aquí]
+- **Resultado obtenido**: ✅ Al hacer clic en "Cerrar sesión", el sistema destruye correctamente la sesión activa, redirige a login.php y al intentar acceder nuevamente a products.php redirife al login.php.
 - **Evidencia**: ![Logout sesión](qa-images/logout-session.png)
 
 #### 1.2 Seguridad y Control de Acceso
 - **Caso**: Intento de inyección SQL en login (`' OR '1'='1`)
 - **Resultado esperado**: Login fallido, sin vulnerabilidad SQL
-- **Resultado obtenido**: [Anotar aquí]
+- **Resultado obtenido**: ✅ El sistema rechaza correctamente los intentos de inyección SQL. Al intentar ingresar con la cadena maliciosa `' OR '1'='1`, el sistema responde con el mensaje estándar "Usuario o contraseña incorrectos" sin revelar información de la base de datos ni permitir el acceso no autorizado.
 - **Evidencia**: ![SQL Injection test](qa-images/sql-injection.png)
 
 - **Caso**: Acceso directo a create_product.php sin ser admin
