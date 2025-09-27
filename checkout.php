@@ -72,28 +72,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<head><title>Checkout</title></head>
+<head>
+    <title>MERCADO FREE - Retail | Finalizar compra</title>
+    <link rel="stylesheet" href="static/assets/styles/checkout.css">
+</head>
 <body>
-    <h1>Finalizar Compra</h1>
-    <h2>Total a Pagar: $<?php echo number_format($totalGeneral, 2); ?></h2>
+    <div class="container">
+        <h1 class="page-title">Finalizar compra</h1>
+        <h2 class="total">Total a Pagar: $<?php echo number_format($totalGeneral, 2); ?></h2>
 
-    <?php if (isset($error)): ?>
-        <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
-    <?php endif; ?>
+        <?php if (isset($error)): ?>
+            <p class="error"><?php echo htmlspecialchars($error); ?></p>
+        <?php endif; ?>
 
-    <form method="POST" action="checkout.php">
-        <h3>Información de Envío</h3>
-        <label for="customer_name">Nombre Completo:</label>
-        <input type="text" id="customer_name" name="customer_name" value="<?php echo htmlspecialchars($_SESSION['username'] ?? ''); ?>" required><br><br>
+        <form method="POST" action="checkout.php">
+            <div class="form-section">
+                <h3>Información de envío</h3>
 
-        <label for="customer_email">Email:</label>
-        <input type="email" id="customer_email" name="customer_email" required><br><br>
+                <div class="form-group">
+                    <label for="customer_name">Nombre completo</label>
+                    <input type="text" id="customer_name" name="customer_name" 
+                        value="<?php echo htmlspecialchars($_SESSION['username'] ?? ''); ?>" required>
+                </div>
 
-        <label for="customer_address">Dirección de Envío:</label>
-        <textarea id="customer_address" name="customer_address" required></textarea><br><br>
+                <div class="form-group">
+                    <label for="customer_email">Email</label>
+                    <input type="email" id="customer_email" name="customer_email" required>
+                </div>
 
-        <button type="submit">Pagar y Confirmar Pedido</button>
-        <p><a href="ver_carrito.php">Cancelar y Volver al Carrito</a></p>
-    </form>
+                <div class="form-group">
+                    <label for="customer_address">Dirección de envío</label>
+                    <textarea id="customer_address" name="customer_address" required></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Pagar y confirmar pedido</button>
+            <p class="cancel-link"><a href="ver_carrito.php">Cancelar y volver al carrito</a></p>
+        </form>
+    </div>
 </body>
 </html>
