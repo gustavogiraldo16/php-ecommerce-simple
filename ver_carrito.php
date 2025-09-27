@@ -42,19 +42,22 @@ if (!empty($cartItems)) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<head><title>Ver Carrito</title></head>
+<head><title>Ver Carrito</title>
+<link rel="stylesheet" href="static/assets/styles/cart.css">
+</head>
 <body>
-    <h1>Tu Carrito de Compras</h1>
-    <p><a href="products.php">Volver al Catálogo</a></p>
+   <div class="container">
+    <h1 class="cart-title">Tu carrito de compras</h1>
+    <p class="back-link"><a href="products.php">← Volver al Catálogo</a></p>
 
     <?php if (empty($productsInCart)): ?>
-        <p>Tu carrito está vacío.</p>
+        <p class="empty-cart">Tu carrito está vacío.</p>
     <?php else: ?>
-        <table border="1" style="width: 100%; border-collapse: collapse;">
+        <table class="cart-table">
             <thead>
                 <tr>
                     <th>Producto</th>
-                    <th>Precio Unitario</th>
+                    <th>Precio unitario</th>
                     <th>Cantidad</th>
                     <th>Subtotal</th>
                 </tr>
@@ -63,22 +66,24 @@ if (!empty($cartItems)) {
                 <?php foreach ($productsInCart as $item): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($item['name']); ?></td>
-                    <td style="text-align: right;">$<?php echo number_format($item['price'], 2); ?></td>
-                    <td style="text-align: center;"><?php echo $item['quantity']; ?></td>
-                    <td style="text-align: right;">$<?php echo number_format($item['subtotal'], 2); ?></td>
+                    <td>$<?php echo number_format($item['price'], 2); ?></td>
+                    <td><?php echo $item['quantity']; ?></td>
+                    <td>$<?php echo number_format($item['subtotal'], 2); ?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3" style="text-align: right; font-weight: bold;">TOTAL:</td>
-                    <td style="text-align: right; font-weight: bold;">$<?php echo number_format($totalGeneral, 2); ?></td>
+                    <td colspan="3" style="text-align: right;">TOTAL:</td>
+                    <td>$<?php echo number_format($totalGeneral, 2); ?></td>
                 </tr>
             </tfoot>
         </table>
 
-        <br>
-        <a href="checkout.php"><button>Proceder a la Compra</button></a>
+        <div class="btn-container">
+            <a href="checkout.php" class="btn">Proceder a la compra</a>
+        </div>
     <?php endif; ?>
+</div>
 </body>
 </html>
