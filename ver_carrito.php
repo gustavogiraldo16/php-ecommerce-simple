@@ -22,7 +22,7 @@ if (!empty($cartItems)) {
     foreach ($cartItems as $productId => $quantity) {
         // Obtener detalles del producto (nombre y precio) de la DB
         $product = $productModel->find($productId);
-        
+
         // Solo si el producto existe y está activo
         if ($product) {
             $subtotal = $product['price'] * $quantity;
@@ -30,10 +30,11 @@ if (!empty($cartItems)) {
                 'name' => $product['name'],
                 'price' => (float)$product['price'],
                 'quantity' => $quantity,
-                'subtotal' => $subtotal
+                'subtotal' => $subtotal,
+                'image_url' => $product['image_url']
             ];
             $totalGeneral += $subtotal;
-        } else {
+        }  else {
             // Manejo: el producto ya no existe en la DB (se podría eliminar de la sesión)
             // No implementado aquí para mantener la simplicidad.
         }
@@ -53,6 +54,7 @@ if (!empty($cartItems)) {
         <table border="1" style="width: 100%; border-collapse: collapse;">
             <thead>
                 <tr>
+                    <th>Imagen</th>
                     <th>Producto</th>
                     <th>Precio Unitario</th>
                     <th>Cantidad</th>
@@ -62,6 +64,14 @@ if (!empty($cartItems)) {
             <tbody>
                 <?php foreach ($productsInCart as $item): ?>
                 <tr>
+                    <td>
+                        <?php if (!empty($item['image_url'])): ?>
+                            <img src="uploads/<?php echo htmlspecialchars($item['image_url']); ?>"
+                                alt="<?php echo htmlspecialchars($item['name']); ?>"
+                                style="width: 50px; height: 50px; object-fit: cover;">
+                        <?php endif; ?>
+                    </td>
+
                     <td><?php echo htmlspecialchars($item['name']); ?></td>
                     <td style="text-align: right;">$<?php echo number_format($item['price'], 2); ?></td>
                     <td style="text-align: center;"><?php echo $item['quantity']; ?></td>

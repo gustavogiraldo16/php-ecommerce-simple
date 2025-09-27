@@ -44,6 +44,11 @@ $totalItemsInCart = $cartService->getTotalItems();
     <?php else: ?>
         <?php foreach ($products as $product): ?>
             <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                <?php if (!empty($product['image_url'])): ?>
+                    <img src="uploads/<?php echo htmlspecialchars($product['image_url']); ?>"
+                        alt="<?php echo htmlspecialchars($product['name']); ?>"
+                        style="width: 100px; height: 100px; object-fit: cover; margin-right: 15px;">
+                <?php endif; ?>
                 <h3><?php echo htmlspecialchars($product['name']); ?></h3>
                 <p><?php echo htmlspecialchars($product['description']); ?></p>
                 <p><strong>Precio:</strong> $<?php echo number_format($product['price'], 2); ?></p>
