@@ -26,7 +26,9 @@ $totalItemsInCart = $cartService->getTotalItems();
     <h1>Catálogo de Productos</h1>
     <p>
         Bienvenido, <?php echo htmlspecialchars($_SESSION['username']); ?>.
-        | <a href="ver_carrito.php">Ver Carrito (<?php echo $totalItemsInCart; ?>)</a> | <a href="logout.php">Cerrar Sesión</a>
+        | <a href="ver_carrito.php">Ver Carrito (<?php echo $totalItemsInCart; ?>)</a>
+        | <a href="mis_compras.php">Mis Compras</a>
+        | <a href="logout.php">Cerrar Sesión</a>
     </p>
 
     <?php if ($isAdmin): ?>
