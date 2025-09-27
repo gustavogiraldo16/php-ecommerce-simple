@@ -64,4 +64,20 @@ class Order {
             return false;
         }
     }
+
+    /**
+     * Obtiene todas las órdenes realizadas por un usuario específico.
+     * @param int $userId
+     * @return array
+     */
+    public function getOrdersByUserId(int $userId): array {
+        $sql = "SELECT id, total, status, created_at, customer_name, customer_email
+                FROM orders
+                WHERE user_id = :user_id
+                ORDER BY created_at DESC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
