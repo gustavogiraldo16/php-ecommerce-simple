@@ -17,7 +17,7 @@
 - **Caso**: Logout y destrucción de sesión
 - **Resultado esperado**: Sesión destruida y redirección a login
 - **Resultado obtenido**: ✅ Al hacer clic en "Cerrar sesión", el sistema destruye correctamente la sesión activa, redirige a login.php y al intentar acceder nuevamente a products.php redirife al login.php.
-- **Evidencia**: ![Logout sesión](qa-images/logout-session.png)
+- **Evidencia**: ![Logout sesión](qa-images/logout-session.gif)
 
 #### 1.2 Seguridad y Control de Acceso
 - **Caso**: Intento de inyección SQL en login (`' OR '1'='1`)
