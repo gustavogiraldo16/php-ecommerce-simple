@@ -7,28 +7,38 @@
 
 .login-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  max-width: 1000px;
+  margin: auto;
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #010c33, #0f2263, #020b1e);
-  padding: 20px;
+  gap: 20px;
+}
+
+.branding {
+  flex: 1; /* columna izquierda */
+
+  padding: 30px 25px;
+  border-radius: 8px;
+
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .login-form {
-  background-color: #fff;
+  flex: 1;
+  background: #fff;
   padding: 30px 25px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-
-  width: 100%;
-  max-width: 400px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 
   display: flex;
   flex-direction: column;
-  gap: 10px;
-
-  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  margin: auto;
 }
 
 .login-form h1 {
@@ -49,13 +59,13 @@ form {
 
 .form-group input {
   width: 100%;
-  padding: 8px 10px;
+  padding: 12px 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
 button {
-  background: #0f2263;
+  background: #f3431a;
   color: #fff;
   padding: 10px;
   border: none;
@@ -68,5 +78,5 @@ button {
 }
 
 button:hover {
-  background: #010c33;
+  background: #bd2300;
 }
