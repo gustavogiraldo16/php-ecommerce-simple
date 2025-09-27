@@ -5,7 +5,7 @@ class Database {
     private $conn;
 
     private $host = 'localhost';
-    private $db   = 'mvcecommerce'; // ¡Asegúrate de que este nombre sea correcto!
+    private $db   = 'ecommerce_db'; // ¡Asegúrate de que este nombre sea correcto!
     private $user = 'root';
     private $pass = ''; // ¡Cambia tu contraseña!
     private $port = '3306';

@@ -41,32 +41,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<head><title>Registro</title></head>
+<head>
+    <title>MERCADO FREE - Retail | Registro</title>
+    <link rel="stylesheet" href="static/assets/styles/register.css">
+</head>
 <body>
-    <h1>Crear Nueva Cuenta</h1>
-    <p>¿Ya tienes una cuenta? <a href="login.php">Inicia Sesión aquí</a></p>
+    <div class="container">
+    <h1 class="page-title">Crear Nueva Cuenta</h1>
+    <p class="page-subtitle">
+        ¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a>
+    </p>
 
     <?php if ($message): ?>
-        <p style="color: green; font-weight: bold;"><?php echo htmlspecialchars($message); ?></p>
+        <p class="success-message"><?php echo htmlspecialchars($message); ?></p>
     <?php endif; ?>
     <?php if ($error): ?>
-        <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
+        <p class="error-message"><?php echo htmlspecialchars($error); ?></p>
     <?php endif; ?>
 
-    <form method="POST" action="register.php">
+    <form method="POST" action="register.php" class="form-card">
         <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username ?? ''); ?>" required><br><br>
+        <input type="text" id="username" name="username" 
+                value="<?php echo htmlspecialchars($username ?? ''); ?>" required>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email ?? ''); ?>" required><br><br>
+        <input type="email" id="email" name="email" 
+                value="<?php echo htmlspecialchars($email ?? ''); ?>" required>
 
         <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required><br><br>
+        <input type="password" id="password" name="password" required>
 
         <label for="password_confirm">Confirmar Contraseña:</label>
-        <input type="password" id="password_confirm" name="password_confirm" required><br><br>
+        <input type="password" id="password_confirm" name="password_confirm" required>
 
-        <button type="submit">Registrarse</button>
+        <button type="submit" class="btn-primary">Registrarse</button>
     </form>
+    </div>
 </body>
 </html>
