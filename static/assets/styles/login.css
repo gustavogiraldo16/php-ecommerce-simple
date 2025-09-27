@@ -14,8 +14,7 @@
 }
 
 .branding {
-  flex: 1; /* columna izquierda */
-
+  flex: 1;
   padding: 30px 25px;
   border-radius: 8px;
 
@@ -79,4 +78,19 @@ button {
 
 button:hover {
   background: #bd2300;
+}
+
+.register-link {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.register-link a {
+  color: #f3431a;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+  color: #bd2300;
 }
