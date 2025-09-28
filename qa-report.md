@@ -35,7 +35,7 @@
 - **Caso**: Acceso a create_product.php como usuario normal
 - **Resultado esperado**: Redirección a products.php por no ser admin
 - **Resultado obtenido**: ✅ El sistema identifica correctamente que el usuario no tiene permisos de administrador y redirige automáticamente a products.php. 
-- **Evidencia**: ![Control acceso](qa-images/admin-access.png)
+- **Evidencia**: ![Control acceso](qa-images/admin-access.gif)
 
 - **Caso**: Validación de campos del producto
 - **Resultado esperado**: Error si nombre vacío o precio <= 0
