@@ -34,7 +34,7 @@
 #### 2.1 Control de Acceso y Validación
 - **Caso**: Acceso a create_product.php como usuario normal
 - **Resultado esperado**: Redirección a products.php por no ser admin
-- **Resultado obtenido**: [Anotar aquí]
+- **Resultado obtenido**: ✅ El sistema identifica correctamente que el usuario no tiene permisos de administrador y redirige automáticamente a products.php. 
 - **Evidencia**: ![Control acceso](qa-images/admin-access.png)
 
 - **Caso**: Validación de campos del producto
