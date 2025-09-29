@@ -1,0 +1,5 @@
+# Ignorar todo lo que hay en esta carpeta
+*
+
+# ¡Pero no ignores este archivo que mantiene la carpeta en Git!
+!.gitignore
