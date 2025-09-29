@@ -4,7 +4,7 @@ class Database {
     private static $instance = null;
     private $conn;
 
-    private $host = 'localhost';
+    private $host = 'localhost ';
     private $db   = 'ecommerce_db'; // ¡Asegúrate de que este nombre sea correcto!
     private $user = 'root';
     private $pass = ''; // ¡Cambia tu contraseña!
