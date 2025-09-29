@@ -22,7 +22,7 @@ if (!empty($cartItems)) {
     foreach ($cartItems as $productId => $quantity) {
         // Obtener detalles del producto (nombre y precio) de la DB
         $product = $productModel->find($productId);
-        
+
         // Solo si el producto existe y está activo
         if ($product) {
             $subtotal = $product['price'] * $quantity;
@@ -30,10 +30,11 @@ if (!empty($cartItems)) {
                 'name' => $product['name'],
                 'price' => (float)$product['price'],
                 'quantity' => $quantity,
-                'subtotal' => $subtotal
+                'subtotal' => $subtotal,
+                'image_url' => $product['image_url']
             ];
             $totalGeneral += $subtotal;
-        } else {
+        }  else {
             // Manejo: el producto ya no existe en la DB (se podría eliminar de la sesión)
             // No implementado aquí para mantener la simplicidad.
         }
@@ -42,19 +43,23 @@ if (!empty($cartItems)) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<head><title>Ver Carrito</title></head>
+<head><title>Ver Carrito</title>
+<link rel="stylesheet" href="static/assets/styles/cart.css">
+</head>
 <body>
-    <h1>Tu Carrito de Compras</h1>
-    <p><a href="products.php">Volver al Catálogo</a></p>
+   <div class="container">
+    <h1 class="cart-title">Tu carrito de compras</h1>
+    <p class="back-link"><a href="products.php">← Volver al Catálogo</a></p>
 
     <?php if (empty($productsInCart)): ?>
-        <p>Tu carrito está vacío.</p>
+        <p class="empty-cart">Tu carrito está vacío.</p>
     <?php else: ?>
-        <table border="1" style="width: 100%; border-collapse: collapse;">
+        <table class="cart-table">
             <thead>
                 <tr>
+                    <th>Imagen</th>
                     <th>Producto</th>
-                    <th>Precio Unitario</th>
+                    <th>Precio unitario</th>
                     <th>Cantidad</th>
                     <th>Subtotal</th>
                 </tr>
@@ -62,23 +67,41 @@ if (!empty($cartItems)) {
             <tbody>
                 <?php foreach ($productsInCart as $item): ?>
                 <tr>
+                    <td>
+                        <?php
+                            $assetsPath = 'static/assets';
+                            $image = "{$assetsPath}/images/image-not-found.png";
+                            if (!empty($item['image_url'])):
+
+                                $imageUrl = "{$assetsPath}/uploads/{$item['image_url']}";
+                                if (file_exists($imageUrl)) {
+                                    $image = $imageUrl;
+                                }
+
+                            endif;
+                        ?>
+                        <img src="<?= $image ?>" alt="<?= htmlspecialchars($item['name']) ?>" class="car-table-td-img">
+                    </td>
+
                     <td><?php echo htmlspecialchars($item['name']); ?></td>
-                    <td style="text-align: right;">$<?php echo number_format($item['price'], 2); ?></td>
-                    <td style="text-align: center;"><?php echo $item['quantity']; ?></td>
-                    <td style="text-align: right;">$<?php echo number_format($item['subtotal'], 2); ?></td>
+                    <td>$<?php echo number_format($item['price'], 2); ?></td>
+                    <td><?php echo $item['quantity']; ?></td>
+                    <td>$<?php echo number_format($item['subtotal'], 2); ?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3" style="text-align: right; font-weight: bold;">TOTAL:</td>
-                    <td style="text-align: right; font-weight: bold;">$<?php echo number_format($totalGeneral, 2); ?></td>
+                    <td colspan="4" style="text-align: right;">TOTAL:</td>
+                    <td>$<?php echo number_format($totalGeneral, 2); ?></td>
                 </tr>
             </tfoot>
         </table>
 
-        <br>
-        <a href="checkout.php"><button>Proceder a la Compra</button></a>
+        <div class="btn-container">
+            <a href="checkout.php" class="btn">Proceder a la compra</a>
+        </div>
     <?php endif; ?>
+</div>
 </body>
 </html>

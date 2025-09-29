@@ -32,21 +32,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<head><title>Login</title></head>
+<head>
+    <title>MERCADO FREE - Retail | Iniciar sesión </title>
+    <link rel="stylesheet" href="static/assets/styles/login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="static/assets/images/favicon.ico">
+</head>
 <body>
-    <h1>Iniciar Sesión</h1>
-    <?php if ($error): ?>
-        <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
-    <?php endif; ?>
-    <form method="POST" action="login.php">
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username" required><br><br>
+    <div class="login-container">
+        <section class="branding">
+            <img src="static/assets/images/logo.png" alt="MERCADO FREE Logo" width="150">
+            <h1>MERCADO FREE</h1>
+            <p>Tu tienda de retail en línea de confianza</p>
+        </section>
+        <section class="login-form">
+            <div>
+                <h1>Iniciar sesión</h1>
+                <?php if ($error): ?>
+                    <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
+                <?php endif; ?>
+                <form method="POST" action="login.php">
+                    <div class="form-group">
+                        <label for="username">Usuario</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
 
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required><br><br>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
 
-        <button type="submit">Entrar</button>
+                    <button type="submit">Entrar</button>
+                </form>
+                <p class="register-link">¿No tienes cuenta? <a href="register.php">Regístrate aquí</a>.</p>
+            </div>
+        </section>
+    </div>
     </form>
-    <p>¿No tienes cuenta? <a href="register.php">Regístrate aquí</a>.</p>
 </body>
 </html>

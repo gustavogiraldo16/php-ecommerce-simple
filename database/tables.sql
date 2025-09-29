@@ -71,6 +71,7 @@ CREATE TABLE `order_items` (
     UNIQUE KEY `order_product_unique` (`order_id`, `product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+ALTER TABLE products ADD COLUMN image_url VARCHAR(255) NULL AFTER description;
 
 INSERT INTO users (username, email, password, role) VALUES
 ('admin', 'admin@shop.com', '$2y$10$VwDsCK/mvwISgk.4jXWiXOJbLMzFX6vstA3pIyGO1PeU8XaGDNT1K', 'ADMIN'),
