@@ -16,7 +16,7 @@ $orders = $orderModel->getOrdersByUserId($userId);
 <html lang="es">
 <head>
     <title>Mis Compras</title>
-    <link rel="stylesheet" href="static/assets/styles/my-orders.css">
+    <link rel="stylesheet" href="static/assets/styles/my_orders.css">
 </head>
 <body>
     <div class="container">
