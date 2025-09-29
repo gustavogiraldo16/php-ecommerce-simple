@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-  max-width: 700px;
+  max-width: 900px;
   margin: 30px auto;
   padding: 20px;
   background-color: #fff;
@@ -21,7 +21,7 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.page-title {
+.orders-title {
   text-align: center;
   margin-bottom: 20px;
   color: #2c3e50;
@@ -43,41 +43,22 @@ body {
   color: #bd2300;
 }
 
-.message {
-  color: green;
-  margin-bottom: 15px;
-  font-weight: bold;
-}
-
-.error {
-  color: red;
-  margin-bottom: 15px;
-  font-weight: bold;
-}
-
-.form-group {
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.form-group input,
-.form-group textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
+.orders-table {
   width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.form-group textarea {
-  min-height: 80px;
-  resize: vertical;
+.orders-table thead {
+  background: linear-gradient(90deg, #f3431a, #ff7043);
+  color: white;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 12px;
+  text-align: center;
 }
 
 .btn {
@@ -89,13 +70,19 @@ body {
   border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 20px;
   text-align: center;
   text-decoration: none;
-  transition: background 0.3s ease;
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-  background: #bd2300;
+  background-color: #bd2300;
 }
 
+.empty-cart {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+  margin-top: 20px;
+}

@@ -37,15 +37,16 @@ $totalItemsInCart = $cartService->getTotalItems();
                     Bienvenido, <?php echo htmlspecialchars($_SESSION['username']); ?>.
                 </span>
 
-                |
-
                 <?php if ($isAdmin): ?>
                     <p>
-                        [ADMIN] <a href="create_product.php">Crear Nuevo Producto</a>
+                        [ADMIN]
                     </p>
+                    <span>|</span><a href="create_product.php">Crear Nuevo Producto</a>
                 <?php endif; ?>
-                
+
+                |
                 <a href="ver_carrito.php">Ver Carrito (<?php echo $totalItemsInCart; ?>)</a>
+                <a href="mis_compras.php">Mis Compras</a>
                 <a href="logout.php">Cerrar Sesión</a>
             </div>
         </header>
@@ -58,19 +59,29 @@ $totalItemsInCart = $cartService->getTotalItems();
             <div class="products-grid">
                 <?php foreach ($products as $product): ?>
                     <div class="product-card">
-                        <?php 
-                            $image = !empty($product['image']) ? htmlspecialchars($product['image']) : 'static/assets/images/image-not-found.png'; 
+
+                        <?php
+                            $assetsPath = 'static/assets';
+                            $image = "{$assetsPath}/images/image-not-found.png";
+                            if (!empty($product['image_url'])):
+
+                                $imageUrl = "{$assetsPath}/uploads/{$product['image_url']}";
+                                if (file_exists($imageUrl)) {
+                                    $image = $imageUrl;
+                                }
+
+                            endif;
                         ?>
 
-                        <img src="<?php echo $image; ?>" alt="Imagen del producto" class="product-image">
-                        
-                        
-                        <h3><?php echo htmlspecialchars($product['name']); ?></h3>
-                        <p><?php echo htmlspecialchars($product['description']); ?></p>
-                        <p><strong>Precio:</strong> $<?php echo number_format($product['price'], 2); ?></p>
+                        <img src="<?= $image ?>" alt="Imagen del producto" class="product-image">
+
+
+                        <h3><?= htmlspecialchars($product['name']) ?></h3>
+                        <p><?= htmlspecialchars($product['description']) ?></p>
+                        <p><strong>Precio:</strong> $<?= number_format($product['price'], 2) ?></p>
 
                         <form method="POST" action="carrito.php">
-                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                            <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
                             <input type="hidden" name="quantity" value="1">
                             <button type="submit">Agregar al Carrito</button>
                         </form>
@@ -79,6 +90,6 @@ $totalItemsInCart = $cartService->getTotalItems();
             </div>
         <?php endif; ?>
     </div>
-   
+
 </body>
 </html>
